@@ -1,0 +1,32 @@
+{
+    "schemaVersion": 1,
+    "id": "lightyear",
+    "version": "${lightyear_version}",
+    "name": "Lightyear",
+    "description": "Adds a \"falling_with_style\" variable to CustomHud",
+    "authors": [ "Lightningtow" ],
+    "contact": {
+        "homepage": "https://github.com/Lightningtow/Chyma"
+    },
+    "license": "CC0-1.0",
+    "icon": "assets/lightyear/icon.png",
+    "environment": "client",
+    "entrypoints": {
+        "client": [ "lightningtow.lightyear.LightyearMain" ]
+    },
+    "depends": {
+        "fabricloader": ">=0.15.0",
+        "minecraft": "~1.20.4",
+        "java": ">=17",
+        "fabric-api": "*",
+        "custom_hud": "*"
+    },
+    "custom": {
+        "modmenu": {
+            "links": {
+                "modmenu.discord": "https://discord.com/invite/BYSCX96fyt"
+            },
+            "update_checker": true
+        }
+    }
+}
