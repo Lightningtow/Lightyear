@@ -2,7 +2,7 @@ plugins { id 'fabric-loom' version '1.6-SNAPSHOT' }
 base { archivesName = property("archives_base_name") }
 
 repositories {	// You should only use this when depending on other mods
-//	maven { url = "https://api.modrinth.com/maven" }
+	maven { url = "https://api.modrinth.com/maven" }
 
 }
 
@@ -12,13 +12,14 @@ dependencies {
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-	modImplementation files("run/mods/custom_hud-4.0.0-beta.421.20.4.jar")
-//	modImplementation "maven.modrinth:customhud:${project.customhud_version}"
+//	modImplementation files("run/mods/custom_hud-4.0.0-beta.421.20.4.jar")
+	modImplementation "maven.modrinth:customhud:${project.customhud_version}"
 
 
 }
-loom { runConfigs.client { ideConfigGenerated(true) } // prevent intelliJ from auto-creating the 'Minecraft Server' run config, you can safely delete this
+loom { runConfigs.client { ideConfigGenerated(true) }
 	runConfigs.server { ideConfigGenerated(false) } }
+// prevent intelliJ from auto-creating the 'Minecraft Server' run config, you can safely delete this
 
 tasks.withType(JavaCompile).configureEach { it.options.release = 17 }
 java {
