@@ -1,7 +1,7 @@
 {
     "schemaVersion": 1,
     "id": "lightyear",
-    "version": "${lightyear_version}",
+    "version": "${version}",
     "name": "Lightyear",
     "description": "Adds a \"falling_with_style\" variable to CustomHud",
     "authors": [ "Lightningtow" ],
@@ -16,7 +16,7 @@
     },
     "depends": {
         "fabricloader": ">=0.15.0",
-        "minecraft": "~1.20.4",
+        "minecraft": ">=1.19",
         "java": ">=17",
         "fabric-api": "*",
         "custom_hud": "*"

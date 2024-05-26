@@ -1,10 +1,9 @@
 plugins { id 'fabric-loom' version '1.6-SNAPSHOT' }
-base { archivesName = property("archives_base_name") }
+base { archivesName = project.archives_base_name }
 
-repositories {	// You should only use this when depending on other mods
-	maven { url = "https://api.modrinth.com/maven" }
+version = "${project.lightyear_version}__for_customhud_v${customhud_api_label}"
 
-}
+repositories { maven { url = "https://api.modrinth.com/maven" } }
 
 dependencies {
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
@@ -12,13 +11,17 @@ dependencies {
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-//	modImplementation files("run/mods/custom_hud-4.0.0-beta.421.20.4.jar")
-	modImplementation "maven.modrinth:customhud:${project.customhud_version}"
-
+	modImplementation files("run/mods/custom_hud-4.0.0-beta.421.20.4.jar")
+//	modImplementation "maven.modrinth:customhud:${project.customhud_version}"
 
 }
-loom { runConfigs.client { ideConfigGenerated(true) }
-	runConfigs.server { ideConfigGenerated(false) } }
+processResources { // converts the  "version": "${version}" in the fabric.mod.json to the actual version
+	inputs.property "version", project.version
+	filesMatching("fabric.mod.json") {
+		expand "version": project.version
+	}
+}
+loom { runConfigs.server { ideConfigGenerated(false) } }
 // prevent intelliJ from auto-creating the 'Minecraft Server' run config, you can safely delete this
 
 tasks.withType(JavaCompile).configureEach { it.options.release = 17 }
